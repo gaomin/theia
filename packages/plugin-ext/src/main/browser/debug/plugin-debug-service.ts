@@ -227,6 +227,18 @@ export class PluginDebugService implements DebugService {
         });
     }
 
+    async provideDebuggerVariables(debugType: string): Promise<Record<string, string>> {
+        for (const contribution of this.debuggers) {
+            if (contribution.type === debugType) {
+                const variables = contribution.variables;
+                if (variables && Object.keys(variables).length > 0) {
+                    return variables;
+                }
+            }
+        }
+        return {};
+    }
+
     async getDebuggersForLanguage(language: string): Promise<DebuggerDescription[]> {
         const debuggers = await this.delegated.getDebuggersForLanguage(language);
 

@@ -54,6 +54,11 @@ export class DebugServiceImpl implements DebugService {
         return this.registry.getConfigurationSnippets();
     }
 
+    async provideDebuggerVariables(debugType: string): Promise<Record<string, string>> {
+        // TODO: Support resolution of variables map through Theia extensions?
+        return {};
+    }
+
     async provideDebugConfigurations(debugType: string, workspaceFolderUri?: string): Promise<DebugConfiguration[]> {
         return this.registry.provideDebugConfigurations(debugType, workspaceFolderUri);
     }

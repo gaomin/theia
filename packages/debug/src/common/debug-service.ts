@@ -55,6 +55,12 @@ export interface DebugService extends Disposable {
     getDebuggersForLanguage(language: string): Promise<DebuggerDescription[]>;
 
     /**
+     * Provide debugger contributed variables
+     * see "variables" at https://code.visualstudio.com/api/references/contribution-points#contributes.debuggers
+     */
+    provideDebuggerVariables(debugType: string): Promise<Record<string, string>>;
+
+    /**
      * Provides the schema attributes.
      * @param debugType The registered debug type
      * @returns An JSON Schema describing the configuration attributes for the given debug type
